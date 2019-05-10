@@ -1,5 +1,5 @@
 <html>
 <body>
-	<p>Hello from a JSP</p>
+	<p>${greeting} ${name}</p>
 </body>
 </html>

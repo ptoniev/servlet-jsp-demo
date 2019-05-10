@@ -3,26 +3,4 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-
-  <display-name>Archetype Created Web Application</display-name>
-  
-  <servlet>
-  	<servlet-name>sayHello</servlet-name>
-  	<servlet-class>bg.proxiad.demo.SayHelloServlet</servlet-class>
-  </servlet>
-  
-   <servlet>
-  	<servlet-name>sayHelloThroughJsp</servlet-name>
-  	<servlet-class>bg.proxiad.demo.SayHelloThroughJspServlet</servlet-class>
-  </servlet>
-  
-   <servlet-mapping>
-  	<servlet-name>sayHello</servlet-name>
-  	<url-pattern>say-hello</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-  	<servlet-name>sayHelloThroughJsp</servlet-name>
-  	<url-pattern>say-hello-through-jsp</url-pattern>
-  </servlet-mapping>
 </web-app>
