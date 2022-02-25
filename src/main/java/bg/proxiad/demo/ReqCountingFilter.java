@@ -1,39 +1,45 @@
 package bg.proxiad.demo;
 
 import java.io.IOException;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
-
-@WebFilter("/*")
+@WebFilter("/count-my-requests")
 public class ReqCountingFilter implements Filter {
 
-	public static final String COUNTER_ATTR = "counter";
+  // public static final String COUNTER_ATTR = "counter";
+  // public String url;
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		filterConfig.getServletContext().setAttribute(COUNTER_ATTR, Long.valueOf(0L));
-	}
+  // @Override
+  // public void init(FilterConfig filterConfig) throws ServletException {
+  //  filterConfig.getServletContext().setAttribute(COUNTER_ATTR, Long.valueOf(0L));
+  // }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+  @Override
+  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+      throws IOException, ServletException {
 
-		Long allCount = (Long) request.getServletContext().getAttribute(COUNTER_ATTR);
-		allCount++;
-		request.getServletContext().setAttribute(COUNTER_ATTR, allCount);
+    System.out.println("Single link request");
 
-		chain.doFilter(request, response);
-	}
+    HttpSession session = ((HttpServletRequest) request).getSession();
+    Long localCounter = 1L;
+    if (session.getAttribute("myCounter") != null) {
+      localCounter = ((Long) session.getAttribute("myCounter")) + 1;
+    }
 
-	@Override
-	public void destroy() {
-		System.out.println("MyFirstFilter, destroing");
-	}
+    session.setAttribute("myCounter", localCounter);
 
+    chain.doFilter(request, response);
+  }
+
+  @Override
+  public void destroy() {
+    System.out.println("MyFirstFilter, destroying");
+  }
 }

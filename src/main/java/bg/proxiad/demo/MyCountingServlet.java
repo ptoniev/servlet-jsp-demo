@@ -2,14 +2,15 @@ package bg.proxiad.demo;
 
 import static java.lang.String.format;
 import java.io.IOException;
+import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/count-my-requests")
-public class GreetingServlet extends HttpServlet {
+@WebServlet("/count-all-requess")
+public class MyCountingServlet extends HttpServlet implements Servlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -17,7 +18,7 @@ public class GreetingServlet extends HttpServlet {
     String name = req.getParameter("name");
     String greeting = "Здравей";
 
-    Long allCount = (Long) req.getSession().getAttribute("myCounter");
+    Long allCount = (Long) getServletContext().getAttribute(MyCountingFilter.My_COUNTER_ATTR);
 
     resp.setContentType("text/html");
     resp.setCharacterEncoding("UTF-8");

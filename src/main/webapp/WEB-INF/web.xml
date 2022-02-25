@@ -3,4 +3,24 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+<servlet>
+<servlet-name>SayHelloServlet</servlet-name>
+<servlet-class>bg.proxiad.demo.SayHelloServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>SayHelloServlet</servlet-name>
+<url-pattern>/say-hello</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>SayHello</servlet-name>
+<servlet-class>bg.proxiad.demo.SayHello</servlet-class>
+<init-param>
+<param-name>greeting</param-name>
+<param-value>Hello, </param-value>
+</init-param>
+</servlet>
 </web-app>
+

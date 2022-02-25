@@ -10,23 +10,23 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>5.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.1.1</version>
+			<version>5.8.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -35,14 +35,14 @@
 		<plugins>
 			<!-- Optional. Allows the app to be run by simply typing mvn jetty:run -->
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.4</version>
+				<groupId>org.eclipse.jetty</groupId>
+    			<artifactId>jetty-maven-plugin</artifactId>
+    			<version>11.0.8</version>
 				<dependencies>
 					<dependency>
 						<groupId>log4j</groupId>
 						<artifactId>log4j</artifactId>
-						<version>1.2.13</version>
+						<version>1.2.17</version>
 					</dependency>
 				</dependencies>
 				<configuration>
@@ -55,6 +55,11 @@
 						</connector>
 					</connectors>
 				</configuration>
+			</plugin>
+			<plugin>
+    			<groupId>org.apache.maven.plugins</groupId>
+    			<artifactId>maven-war-plugin</artifactId>
+    			<version>3.3.1</version>
 			</plugin>
 		</plugins>
 	</build>
